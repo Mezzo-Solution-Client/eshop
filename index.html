@@ -42,17 +42,16 @@
     ac('init', '4896d928-b6cc-42c8-814b-8c10ff443122', { region: 'euc1' });
     ac('pageview');
 
-    window.addEventListener('load', function () {
-      ac('update', {
-        customer: {
-          id: 'user-12345',
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'john.doe@email.com',
-          phone: '+49123456789'
-        }
+    ac(function onReady() {
+      console.log('Journey SDK is ready');
+      // Now safe to identify the customer and log pageview
+      ac('identify', {
+        id: 'user-12345',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@email.com',
+        phone: '+49123456789'
       });
-
       ac('pageview');
     });
   </script>

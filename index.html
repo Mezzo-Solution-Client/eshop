@@ -31,31 +31,40 @@
       deploymentId: '4001cbfa-0819-4b7f-a83a-3cda1b726a3f'
     });
   </script>
-
   <script>
     (function (a, t, c, l, o, u, d) {
-      a['_genesysJourneySdk'] = o; a[o] = a[o] || function () {
-        (a[o].q = a[o].q || []).push(arguments)
-      }, a[o].l = 1 * new Date(); u = t.createElement(c),
-        d = t.getElementsByTagName(c)[0]; u.async = 1; u.src = l; u.charset = 'utf-8'; d.parentNode.insertBefore(u, d)
-    })(window, document, 'script', 'https://apps.mypurecloud.de/journey/sdk/js/web/v1/ac.js', 'ac');
-    ac('init', '4896d928-b6cc-42c8-814b-8c10ff443122', { region: 'euc1' });
-    ac('pageview');
+      a['_genesysJourneySdk'] = o;
+      a[o] = a[o] || function () { (a[o].q = a[o].q || []).push(arguments) };
+      a[o].l = 1 * new Date();
+      u = t.createElement(c);
+      d = t.getElementsByTagName(c)[0];
+      u.async = 1;
+      u.src = l;
+      u.charset = 'utf-8';
+      d.parentNode.insertBefore(u, d);
+    })(window, document, 'script',
+      'https://apps.mypurecloud.de/journey/sdk/js/web/v1/ac.js', 'ac');
 
-    ac(function onReady() {
-      console.log('Journey SDK is ready');
-      // Now safe to identify the customer and log pageview
-      ac('identify', {
-        id: 'user-12345',
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@email.com',
-        phone: '+49123456789'
-      });
-      ac('pageview');
+    // Initialize with global traits mapping
+    ac('init', '4896d928-b6cc-42c8-814b-8c10ff443122', {   // replace with your Journey deployment key
+      region: 'euc1',
+      globalTraitsMapper: [
+        { fieldName: 'firstName', traitName: 'givenName' },
+        { fieldName: 'email', traitName: 'email' },
+        { fieldName: 'phone', traitName: 'cellPhone' }
+      ]
     });
-  </script>
 
+    // Identify the customer with traits
+    ac('record', 'userIdentified', {
+      firstName: 'John',
+      email: 'john.doe@email.com',
+      phone: '+49123456789'
+    });
+
+    // Now log the pageview (so Genesys ties the session with identity)
+    ac('pageview');
+  </script>
 </head>
 
 <body>

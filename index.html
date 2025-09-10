@@ -43,6 +43,20 @@
     ac('pageview');
   </script>
 
+  <script>
+  // After user logs in or you have their details:
+  ac('update', {
+    customer: {
+      id: 'user-12345',        // Unique identifier from your system (CRM, DB, etc.)
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@email.com',
+      phone: '+49123456789'
+    }
+  });
+</script>
+
+
 </head>
 
 <body>

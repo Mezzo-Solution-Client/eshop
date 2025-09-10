@@ -17,21 +17,21 @@
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- PREDICTIVE ENGAGEMENT SNIPPET -->
-       <script type="text/javascript" charset="utf-8">
-        (function (g, e, n, es, ys) {
-          g['_genesysJs'] = e;
-          g[e] = g[e] || function () {
-            (g[e].q = g[e].q || []).push(arguments)
-          };
-          g[e].t = 1 * new Date();
-          g[e].c = es;
-          ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-        })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-          environment: 'prod-euc1',
-          deploymentId: '4001cbfa-0819-4b7f-a83a-3cda1b726a3f'
-        });
-      </script>
-      
+  <script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments)
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-euc1',
+      deploymentId: '4001cbfa-0819-4b7f-a83a-3cda1b726a3f'
+    });
+  </script>
+
   <script>
     (function (a, t, c, l, o, u, d) {
       a['_genesysJourneySdk'] = o; a[o] = a[o] || function () {
@@ -41,21 +41,19 @@
     })(window, document, 'script', 'https://apps.mypurecloud.de/journey/sdk/js/web/v1/ac.js', 'ac');
     ac('init', '4896d928-b6cc-42c8-814b-8c10ff443122', { region: 'euc1' });
     ac('pageview');
+
+    window.addEventListener('load', function () {
+      ac('update', {
+        customer: {
+          id: 'user-12345',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@email.com',
+          phone: '+49123456789'
+        }
+      });
+    });
   </script>
-
-  <script>
-  // After user logs in or you have their details:
-  ac('update', {
-    customer: {
-      id: 'user-12345',        // Unique identifier from your system (CRM, DB, etc.)
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@email.com',
-      phone: '+49123456789'
-    }
-  });
-</script>
-
 
 </head>
 

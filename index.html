@@ -16,7 +16,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- PREDICTIVE ENGAGEMENT SNIPPET -->
+
   <script type="text/javascript" charset="utf-8">
     (function (g, e, n, es, ys) {
       g['_genesysJs'] = e;
@@ -31,39 +33,36 @@
       deploymentId: '4001cbfa-0819-4b7f-a83a-3cda1b726a3f'
     });
   </script>
+
   <script>
     (function (a, t, c, l, o, u, d) {
-      a['_genesysJourneySdk'] = o;
-      a[o] = a[o] || function () { (a[o].q = a[o].q || []).push(arguments) };
-      a[o].l = 1 * new Date();
-      u = t.createElement(c);
-      d = t.getElementsByTagName(c)[0];
-      u.async = 1;
-      u.src = l;
-      u.charset = 'utf-8';
-      d.parentNode.insertBefore(u, d);
-    })(window, document, 'script',
-      'https://apps.mypurecloud.de/journey/sdk/js/web/v1/ac.js', 'ac');
-
-    // Initialize with global traits mapping
-    ac('init', '4896d928-b6cc-42c8-814b-8c10ff443122', {   // replace with your Journey deployment key
-      region: 'euc1',
-      globalTraitsMapper: [
-        { fieldName: 'firstName', traitName: 'givenName' },
-        { fieldName: 'email', traitName: 'email' },
-        { fieldName: 'phone', traitName: 'cellPhone' }
-      ]
-    });
-
-    // Identify the customer with traits
-    ac('record', 'userIdentified', {
-      firstName: 'John',
-      email: 'john.doe@email.com',
-      phone: '+49123456789'
-    });
-
-    // Now log the pageview (so Genesys ties the session with identity)
+      a['_genesysJourneySdk'] = o; a[o] = a[o] || function () {
+        (a[o].q = a[o].q || []).push(arguments)
+      }, a[o].l = 1 * new Date(); u = t.createElement(c),
+        d = t.getElementsByTagName(c)[0]; u.async = 1; u.src = l; u.charset = 'utf-8'; d.parentNode.insertBefore(u, d)
+    })(window, document, 'script', 'https://apps.mypurecloud.de/journey/sdk/js/web/v1/ac.js', 'ac');
+    ac('init', '4896d928-b6cc-42c8-814b-8c10ff443122', { region: 'euc1' });
     ac('pageview');
+  </script>
+
+  <script>
+    window.addEventListener("load", function () {
+      Genesys("command", "Journey.record", {
+        eventName: "login_success",   // any event name you want
+        customAttributes: {
+          firstName: "John",
+          lastName: "Smith",
+          emailAddress: "john.smith@genesys.com",
+          phoneMobile: "5559871235"
+        },
+        traitsMapper: [
+          { "fieldName": "firstName", "traitName": "givenName" },
+          { "fieldName": "lastName", "traitName": "familyName" },
+          { "fieldName": "emailAddress", "traitName": "email" },
+          { "fieldName": "phoneMobile", "traitName": "cellPhone" }
+        ]
+      });
+    });
   </script>
 </head>
 

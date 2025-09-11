@@ -122,7 +122,7 @@
       <!-- Search Bar -->
       <div class="form">
         <input type="search" placeholder="Search products..." id="searchBox" />
-        <input onclick="trackSearch()" type="submit" value="Search" />
+        <input onclick="trackSearch(document.getElementById('searchBox').value)" type="submit" value="Search" />
       </div>
     </div>
     <div class="social-icons">

@@ -78,21 +78,16 @@
   </script>
 
   <!-- CAPTURE USER SEARCH -->
-  <!-- <script>
-    function trackSearch(query) {
-      Genesys("command", "Journey.record", {
-        eventName: "search_performed",
-        customAttributes: {
-          searchTerm: query
-        }
-      });
-    }
-  </script> -->
   <script>
     function trackSearch() {
       const term = document.getElementById('searchBox').value;
       if (term) {
-        ac('record', 'search_performed', { query: term });
+        ac('record', {
+          eventName: 'search',
+          customAttributes: {
+            query: term
+          }
+        });
       }
     }
   </script>
@@ -128,10 +123,8 @@
         </a>
       </div>
       <!-- Search Bar -->
-      <div class="form">
-        <input type="text" placeholder="Search products..." id="searchBox" />
-        <button onclick="trackSearch()">Search</button>
-      </div>
+      <input type="text" id="searchBox" placeholder="Search...">
+      <button onclick="trackSearch()">Search</button>
     </div>
     <div class="social-icons">
       <a href="#" target="_blank" aria-label="Instagram">

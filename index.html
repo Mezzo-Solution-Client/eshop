@@ -50,16 +50,28 @@
       Genesys("command", "Journey.record", {
         eventName: "login_success",   // any event name you want
         customAttributes: {
-          firstName: "John",
-          lastName: "Smith",
-          emailAddress: "john.smith@genesys.com",
-          phoneMobile: "5559871235"
+          firstName: "Ahmad",
+          lastName: "Sabanakh",
+          middleName: "Bis",
+          emailAddress: "ahmad.sabanakh@genesys.com",
+          phoneWork: "5559874321",
+          phoneMobile: "5559871235",
+          phoneOther: "5559712356",
+          phoneHome: "5559871234",
+          jobName: "Chiffour",
+          salute: "Mr."
         },
         traitsMapper: [
           { "fieldName": "firstName", "traitName": "givenName" },
           { "fieldName": "lastName", "traitName": "familyName" },
+          { "fieldName": "middleName", "traitName": "middleName" },
           { "fieldName": "emailAddress", "traitName": "email" },
-          { "fieldName": "phoneMobile", "traitName": "cellPhone" }
+          { "fieldName": "phoneWork", "traitName": "workPhone" },
+          { "fieldName": "phoneMobile", "traitName": "cellPhone" },
+          { "fieldName": "phoneOther", "traitName": "otherPhone" },
+          { "fieldName": "phoneHome", "traitName": "homePhone" },
+          { "fieldName": "jobName", "traitName": "jobTitle" },
+          { "fieldName": "salute", "traitName": "salutation" }
         ]
       });
     });

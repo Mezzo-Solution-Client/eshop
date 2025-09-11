@@ -77,7 +77,8 @@
     });
   </script>
 
-  <script>
+  <!-- CAPTURE USER SEARCH -->
+  <!-- <script>
     function trackSearch(query) {
       Genesys("command", "Journey.record", {
         eventName: "search_performed",
@@ -86,9 +87,14 @@
         }
       });
     }
-
-    // Example: user searches for "bandana"
-    trackSearch("bandana");
+  </script> -->
+  <script>
+    function trackSearch() {
+      const term = document.getElementById('searchBox').value;
+      if (term) {
+        ac('record', 'search_performed', { query: term });
+      }
+    }
   </script>
 </head>
 
@@ -123,8 +129,8 @@
       </div>
       <!-- Search Bar -->
       <div class="form">
-        <input type="search" placeholder="Search products..." id="search" />
-        <button onclick="trackSearch(document.getElementById('search').value)">Search</button>
+        <input type="search" placeholder="Search products..." id="searchBox" />
+        <input onclick="trackSearch()" type="submit" value="Search" />
       </div>
     </div>
     <div class="social-icons">
